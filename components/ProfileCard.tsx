@@ -1,4 +1,4 @@
-import { formatDate, formatLanguage } from "@/lib/format";
+import { formatDate, formatLanguage, formatRegion } from "@/lib/format";
 import type { TikTokProfile } from "@/lib/tiktok/types";
 import { CopyButton } from "./CopyButton";
 import { ProfileStats } from "./ProfileStats";
@@ -16,7 +16,7 @@ export function ProfileCard({ profile }: ProfileCardProps) {
       hint: "Stays the same if the username changes.",
     },
     { label: "Language", value: formatLanguage(profile.language) },
-    { label: "Region", value: profile.region },
+    { label: "Region", value: formatRegion(profile.region) },
     { label: "Account created", value: formatDate(profile.createdAt) },
     {
       label: "Username last changed",

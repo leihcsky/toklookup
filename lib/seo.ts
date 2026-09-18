@@ -2,9 +2,9 @@ import { SITE, siteUrl } from "@/lib/brand";
 import type { Metadata } from "next";
 
 export const HOME_SEO = {
-  title: "TikTok User Finder | Public Lookup, No Login",
+  title: "TikTok User Finder | See User ID & Region, No Login",
   description:
-    "Free TikTok User Finder. Look up public profiles by username or URL. See bio, followers, and User ID. No login required. Private accounts stay private.",
+    "Free TikTok User Finder and region finder. Look up public profiles by username or URL. See User ID, region, bio, and followers. No login required.",
 } as const;
 
 type PageSeo = {

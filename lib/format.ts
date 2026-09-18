@@ -44,3 +44,21 @@ export function formatLanguage(code: string | null): string {
     return code;
   }
 }
+
+export function formatRegion(code: string | null): string {
+  if (!code) {
+    return "—";
+  }
+
+  const normalized = code.trim().toUpperCase();
+  if (!/^[A-Z]{2}$/.test(normalized)) {
+    return code;
+  }
+
+  try {
+    const name = new Intl.DisplayNames(["en"], { type: "region" }).of(normalized);
+    return name && name !== normalized ? `${name} (${normalized})` : normalized;
+  } catch {
+    return code;
+  }
+}

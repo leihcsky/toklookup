@@ -7,7 +7,7 @@ export const FAQS = [
   {
     question: "Where does the profile data come from?",
     answer:
-      "TokLookup reads the public TikTok profile page for that username and shows fields that page already exposes, such as bio, follower counts, and User ID. It does not log in to TikTok, and it does not collect data from private profiles.",
+      "TokLookup reads the public TikTok profile page for that username and shows fields that page already exposes, such as bio, follower counts, User ID, and region. It does not log in to TikTok, and it does not collect data from private profiles.",
   },
   {
     question: "Do I need to log in?",
@@ -28,6 +28,11 @@ export const FAQS = [
     question: "Can I look up a private account?",
     answer:
       "No. Only information that is already public on the web profile is shown. Private accounts are not opened.",
+  },
+  {
+    question: "Can I use this as a TikTok region finder?",
+    answer:
+      "Yes, when TikTok includes a region on the public profile. TokLookup shows that public region field; it is not GPS, live location, or an IP lookup, and private accounts stay closed.",
   },
   {
     question: "Why is some information missing?",
