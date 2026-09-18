@@ -1,0 +1,32 @@
+{
+  "__DEFAULT_SCOPE__": {
+    "webapp.user-detail": {
+      "userInfo": {
+        "user": {
+          "id": "107955",
+          "uniqueId": "tiktok",
+          "nickname": "TikTok",
+          "avatarLarger": "https://example.com/avatar.jpg",
+          "signature": "Your next discovery is waiting on TikTok.",
+          "verified": true,
+          "privateAccount": false,
+          "language": "en",
+          "createTime": 1425144149,
+          "uniqueIdModifyTime": 0,
+          "nickNameModifyTime": 1638559600,
+          "bioLink": {
+            "link": "https://www.tiktok.com"
+          }
+        },
+        "stats": {
+          "followerCount": 95800000,
+          "followingCount": 1,
+          "heartCount": 464000000,
+          "videoCount": 1503
+        }
+      },
+      "statusCode": 0,
+      "statusMsg": ""
+    }
+  }
+}

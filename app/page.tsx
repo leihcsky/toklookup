@@ -1,69 +1,174 @@
-import Image from "next/image";
+import { FAQ, FAQS } from "@/components/FAQ";
+import { LookupTool } from "@/components/LookupTool";
+import { SITE, siteUrl } from "@/lib/brand";
+import { HOME_SEO, homeMetadata } from "@/lib/seo";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = homeMetadata;
+
+const HIGHLIGHTS = [
+  "No login",
+  "Free to use",
+  "Public profiles only",
+  "Includes User ID",
+];
+
+const PROFILE_FIELDS = [
+  { label: "Username", detail: "The public @handle" },
+  { label: "Display name", detail: "The name shown on the profile" },
+  { label: "Bio", detail: "The public profile signature" },
+  { label: "Followers", detail: "Public follower count" },
+  { label: "Following", detail: "Public following count" },
+  { label: "Likes", detail: "Public like total" },
+  { label: "Videos", detail: "Public video count" },
+  { label: "User ID", detail: "The numeric account ID. It stays the same if the username changes." },
+  { label: "Bio link", detail: "The public link on the profile, when present" },
+  { label: "Language", detail: "The language set on the public profile" },
+  { label: "Account created", detail: "The public account creation date" },
+];
+
+const STEPS = [
+  {
+    title: "Enter a username",
+    body: "Paste a TikTok username, @handle, or public profile URL.",
+  },
+  {
+    title: "Read the public page",
+    body: "TokLookup requests the public TikTok profile page and reads the embedded profile data.",
+  },
+  {
+    title: "See public details",
+    body: "Display name, stats, and User ID appear on this page. Results are not saved as separate profile URLs.",
+  },
+];
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      name: `${SITE.name} ${SITE.product}`,
+      url: siteUrl("/"),
+      applicationCategory: "UtilitiesApplication",
+      operatingSystem: "Any",
+      description: HOME_SEO.description,
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "USD",
+      },
+    },
+    {
+      "@type": "FAQPage",
+      mainEntity: FAQS.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
+    },
+  ],
+};
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main className="mx-auto flex w-full max-w-5xl min-w-0 flex-1 flex-col gap-10 px-4 py-8 sm:gap-16 sm:py-12 lg:py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
+      <section className="space-y-6">
+        <p className="text-sm font-medium uppercase tracking-[0.2em] text-teal-800">
+          {SITE.name}
+        </p>
+        <h1 className="max-w-3xl text-3xl font-semibold tracking-tight text-balance text-zinc-900 sm:text-4xl lg:text-5xl">
+          TikTok User Finder
+        </h1>
+        <p className="max-w-2xl text-base leading-7 text-zinc-600 sm:text-lg sm:leading-8">
+          Look up public TikTok profile information by username. No login, no
+          app — paste a handle or profile URL and see what is already public.
+        </p>
+        <ul className="flex flex-wrap gap-2">
+          {HIGHLIGHTS.map((item) => (
+            <li
+              key={item}
+              className="rounded-full border border-teal-800/15 bg-white px-3 py-1 text-sm font-medium text-teal-900"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              {item}
+            </li>
+          ))}
+        </ul>
+        <LookupTool />
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="text-xl font-semibold tracking-tight text-zinc-900">
+          What this TikTok User Finder shows
+        </h2>
+        <p className="max-w-2xl text-zinc-600 leading-7">
+          When the profile is public, TokLookup tries to return the same kind of
+          fields you would see on the public web profile — including User ID.
+        </p>
+        <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+          {PROFILE_FIELDS.map((field) => (
+            <div
+              key={field.label}
+              className="rounded-2xl border border-zinc-200 bg-white px-3 py-3 sm:px-4 sm:py-4"
             >
-              Learning
-            </a>{" "}
-            center.
+              <h3 className="font-semibold text-zinc-900">{field.label}</h3>
+              <p className="mt-1 text-sm leading-6 text-zinc-600">{field.detail}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="space-y-4">
+        <h2 className="text-xl font-semibold tracking-tight text-zinc-900">
+          How it works
+        </h2>
+        <div className="grid gap-4 md:grid-cols-3">
+          {STEPS.map((step, index) => (
+            <div
+              key={step.title}
+              className="rounded-3xl border border-zinc-200 bg-white p-5"
+            >
+              <p className="text-sm font-semibold text-teal-800">
+                Step {index + 1}
+              </p>
+              <h3 className="mt-2 font-semibold text-zinc-900">{step.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-zinc-600">{step.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="grid gap-8 rounded-3xl border border-zinc-200 bg-white p-5 sm:grid-cols-2 sm:p-8">
+        <div className="space-y-3">
+          <h2 className="text-xl font-semibold tracking-tight text-zinc-900">
+            Public lookup only
+          </h2>
+          <p className="text-sm leading-7 text-zinc-600">
+            TokLookup is a TikTok User Finder for information that is already
+            public on the web. It does not sign in to TikTok, open private
+            accounts, or download videos.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="space-y-3">
+          <h2 className="text-xl font-semibold tracking-tight text-zinc-900">
+            Use it when you have a username
+          </h2>
+          <p className="text-sm leading-7 text-zinc-600">
+            Check a public handle, confirm a display name or verification badge,
+            or read the User ID without opening the TikTok app. If the account
+            is private or missing, the tool says so instead of guessing.
+          </p>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <FAQ />
+    </main>
   );
 }
