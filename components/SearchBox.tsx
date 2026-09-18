@@ -9,6 +9,9 @@ type SearchBoxProps = {
   onSelectRecent: (username: string) => void;
   onRemoveRecent: (username: string) => void;
   onClearRecent: () => void;
+  inputId?: string;
+  submitLabel?: string;
+  loadingLabel?: string;
 };
 
 export function SearchBox({
@@ -20,6 +23,9 @@ export function SearchBox({
   onSelectRecent,
   onRemoveRecent,
   onClearRecent,
+  inputId = "tiktok-username",
+  submitLabel = "Find User",
+  loadingLabel = "Looking up…",
 }: SearchBoxProps) {
   return (
     <form
@@ -29,12 +35,12 @@ export function SearchBox({
         onSubmit();
       }}
     >
-      <label htmlFor="tiktok-username" className="sr-only">
+      <label htmlFor={inputId} className="sr-only">
         TikTok username
       </label>
       <div className="flex flex-col gap-3 sm:flex-row">
         <input
-          id="tiktok-username"
+          id={inputId}
           type="text"
           value={value}
           onChange={(event) => onChange(event.target.value)}
@@ -49,7 +55,7 @@ export function SearchBox({
           disabled={loading}
           className="h-12 shrink-0 rounded-2xl bg-teal-800 px-6 text-base font-semibold text-white shadow-sm transition hover:bg-teal-700 disabled:cursor-not-allowed disabled:opacity-70 sm:h-14 sm:px-7"
         >
-          {loading ? "Looking up…" : "Find User"}
+          {loading ? loadingLabel : submitLabel}
         </button>
       </div>
 

@@ -21,21 +21,25 @@ export default function TermsPage() {
         <p>
           TokLookup is an independent third-party lookup tool. You may enter a
           TikTok username, @handle, or public profile URL to request publicly
-          available profile information through our TikTok User Finder.
+          available profile information through the TikTok User Finder, or
+          currently active public stories through the TikTok Story Viewer.
         </p>
         <p>
           TokLookup is not a TikTok client, does not require a TikTok login, and
-          does not provide private account access, downloads, follower lists, or
-          a permanent TikTok user database.
+          does not provide private account access, follower lists, or a
+          permanent TikTok user database. Downloads are limited to currently
+          active public stories returned by the Story Viewer. TokLookup is not a
+          general TikTok video downloader.
         </p>
       </LegalSection>
 
       <LegalSection title="Public information">
         <p>
           The service only attempts to retrieve information that is already
-          publicly accessible on TikTok profile pages. If a profile is private,
-          missing, restricted, or otherwise unavailable, TokLookup may return no
-          data or an incomplete result.
+          publicly accessible on TikTok, including public profile pages and
+          currently active public stories. If a profile is private, missing,
+          restricted, or otherwise unavailable, or if no public story is live,
+          TokLookup may return no data or an incomplete result.
         </p>
       </LegalSection>
 
@@ -56,6 +60,7 @@ export default function TermsPage() {
           <li>conduct unlawful investigations or identity abuse</li>
           <li>scrape, overload, or otherwise abuse the service</li>
           <li>bypass rate limits or automate excessive requests</li>
+          <li>download or share private, Friends-only, or expired stories</li>
           <li>misrepresent TokLookup as TikTok or as an official tool</li>
         </ul>
         <p>

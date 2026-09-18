@@ -1,16 +1,17 @@
 "use client";
 
 import { ErrorMessage } from "@/components/ErrorMessage";
-import { ProfileCard } from "@/components/ProfileCard";
 import { SearchBox } from "@/components/SearchBox";
+import { StoryGrid, StoryProfileStrip } from "@/components/StoryGrid";
 import {
+  STORY_SEARCHES_KEY,
   clearRecentSearches,
   forgetSearch,
   readRecentSearches,
   rememberSearch,
 } from "@/lib/recent-searches";
-import { USER_MESSAGES } from "@/lib/tiktok/messages";
-import type { LookupStatus, TikTokProfile } from "@/lib/tiktok/types";
+import { STORY_MESSAGES } from "@/lib/tiktok/messages";
+import type { LookupStatus, TikTokProfile, TikTokStory } from "@/lib/tiktok/types";
 import { normalizeUsername } from "@/lib/tiktok/username";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
@@ -21,17 +22,18 @@ type ApiResponse = {
   cached: boolean;
   message?: string;
   profile?: TikTokProfile;
+  stories?: TikTokStory[];
 };
 
-export function LookupTool() {
+export function StoryLookupTool() {
   return (
     <Suspense fallback={<div className="min-h-28" />}>
-      <LookupToolInner />
+      <StoryLookupToolInner />
     </Suspense>
   );
 }
 
-function LookupToolInner() {
+function StoryLookupToolInner() {
   const searchParams = useSearchParams();
   const usernameFromUrl = (
     searchParams.get("username") ??
@@ -42,10 +44,11 @@ function LookupToolInner() {
   const [loading, setLoading] = useState(Boolean(usernameFromUrl));
   const [error, setError] = useState<string | null>(null);
   const [profile, setProfile] = useState<TikTokProfile | null>(null);
+  const [stories, setStories] = useState<TikTokStory[]>([]);
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
 
   useEffect(() => {
-    setRecentSearches(readRecentSearches());
+    setRecentSearches(readRecentSearches(STORY_SEARCHES_KEY));
   }, []);
 
   useEffect(() => {
@@ -61,7 +64,8 @@ function LookupToolInner() {
     const value = nextQuery.trim();
     if (!value) {
       setProfile(null);
-      setError(USER_MESSAGES.invalid_username);
+      setStories([]);
+      setError(STORY_MESSAGES.invalid_username);
       return;
     }
 
@@ -71,28 +75,30 @@ function LookupToolInner() {
 
     try {
       const response = await fetch(
-        `/api/tiktok/profile?username=${encodeURIComponent(value)}`,
+        `/api/tiktok/stories?username=${encodeURIComponent(value)}`,
       );
       const data = (await response.json()) as ApiResponse;
+      const attempted = data.profile?.username || normalizeUsername(value);
 
-      if (data.success && data.profile) {
-        const found = data.profile;
-        setProfile(found);
-        setError(null);
-        setRecentSearches((current) => rememberSearch(found.username, current));
-        return;
-      }
-
-      const attempted = normalizeUsername(value);
       if (attempted) {
-        setRecentSearches((current) => rememberSearch(attempted, current));
+        setRecentSearches((current) =>
+          rememberSearch(attempted, current, STORY_SEARCHES_KEY),
+        );
       }
 
       setProfile(data.profile ?? null);
-      setError(data.message || USER_MESSAGES.unavailable);
+      setStories(data.stories ?? []);
+
+      if (data.status === "success") {
+        setError(null);
+        return;
+      }
+
+      setError(data.message || STORY_MESSAGES.unavailable);
     } catch {
       setProfile(null);
-      setError(USER_MESSAGES.fetch_error);
+      setStories([]);
+      setError(STORY_MESSAGES.fetch_error);
     } finally {
       setLoading(false);
     }
@@ -104,16 +110,26 @@ function LookupToolInner() {
         value={query}
         loading={loading}
         recentSearches={recentSearches}
+        inputId="tiktok-story-username"
+        submitLabel="View Stories"
+        loadingLabel="Loading stories…"
         onChange={setQuery}
         onSubmit={() => handleSubmit()}
         onSelectRecent={(username) => handleSubmit(`@${username}`)}
         onRemoveRecent={(username) =>
-          setRecentSearches((current) => forgetSearch(username, current))
+          setRecentSearches((current) =>
+            forgetSearch(username, current, STORY_SEARCHES_KEY),
+          )
         }
-        onClearRecent={() => setRecentSearches(clearRecentSearches())}
+        onClearRecent={() =>
+          setRecentSearches(clearRecentSearches(STORY_SEARCHES_KEY))
+        }
       />
       {error ? <ErrorMessage message={error} /> : null}
-      {profile ? <ProfileCard profile={profile} /> : null}
+      {profile ? <StoryProfileStrip profile={profile} /> : null}
+      {stories.length > 0 && profile ? (
+        <StoryGrid username={profile.username} stories={stories} />
+      ) : null}
     </div>
   );
 }

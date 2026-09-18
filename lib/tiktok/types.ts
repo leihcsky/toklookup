@@ -27,11 +27,41 @@ export type LookupStatus =
   | "rate_limited"
   | "fetch_error"
   | "parse_error"
-  | "invalid_username";
+  | "invalid_username"
+  | "no_stories";
+
+export type StoryKind = "video" | "photo";
+
+export interface TikTokStory {
+  id: string;
+  type: StoryKind;
+  coverUrl: string | null;
+  mediaUrl: string | null;
+  createdAt: string | null;
+  expiresAt: string | null;
+  durationSeconds: number | null;
+}
+
+export type StoriesLookupResult =
+  | {
+      status: "success";
+      profile: TikTokProfile;
+      stories: TikTokStory[];
+    }
+  | {
+      status: "no_stories";
+      profile: TikTokProfile;
+      stories: [];
+    }
+  | {
+      status: Exclude<LookupStatus, "success" | "no_stories">;
+      profile?: TikTokProfile;
+      stories?: TikTokStory[];
+    };
 
 export type LookupResult =
   | { status: "success"; profile: TikTokProfile }
-  | { status: Exclude<LookupStatus, "success">; profile?: TikTokProfile };
+  | { status: Exclude<LookupStatus, "success" | "no_stories">; profile?: TikTokProfile };
 
 export interface TikTokDataProvider {
   getProfile(username: string): Promise<LookupResult>;

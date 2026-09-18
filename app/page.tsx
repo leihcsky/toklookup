@@ -1,8 +1,10 @@
 import { FAQ, FAQS } from "@/components/FAQ";
 import { LookupTool } from "@/components/LookupTool";
+import { RelatedTools } from "@/components/RelatedTools";
 import { SITE, siteUrl } from "@/lib/brand";
 import { HOME_SEO, homeMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = homeMetadata;
 
@@ -109,6 +111,7 @@ export default function Home() {
             </li>
           ))}
         </ul>
+        <RelatedTools current="finder" />
         <LookupTool />
       </section>
 
@@ -164,6 +167,15 @@ export default function Home() {
             TokLookup is a TikTok User Finder for information that is already
             public on the web, including region when TikTok shows it. It does
             not sign in to TikTok, open private accounts, or download videos.
+            For currently active public stories you can watch anonymously, use
+            the{" "}
+            <Link
+              href="/tiktok-story-viewer"
+              className="font-medium text-teal-800 underline"
+            >
+              TikTok Story Viewer
+            </Link>
+            .
           </p>
         </div>
         <div className="space-y-3">

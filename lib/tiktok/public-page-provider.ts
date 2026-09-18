@@ -1,7 +1,7 @@
 import { parseProfileHtml } from "./parser";
 import type { LookupResult } from "./types";
 
-const PROFILE_HEADERS = {
+export const PROFILE_HEADERS = {
   Accept:
     "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
   "Accept-Language": "en-US,en;q=0.9",
@@ -12,6 +12,14 @@ const PROFILE_HEADERS = {
 const FETCH_TIMEOUT_MS = 15_000;
 
 export async function fetchPublicProfile(username: string): Promise<LookupResult> {
+  const page = await fetchPublicProfilePage(username);
+  return page.result;
+}
+
+export async function fetchPublicProfilePage(username: string): Promise<{
+  result: LookupResult;
+  cookies: string | null;
+}> {
   const url = `https://www.tiktok.com/@${encodeURIComponent(username)}`;
 
   let response: Response;
@@ -24,17 +32,32 @@ export async function fetchPublicProfile(username: string): Promise<LookupResult
       signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
     });
   } catch {
-    return { status: "fetch_error" };
+    return { result: { status: "fetch_error" }, cookies: null };
   }
 
+  const cookies = cookieHeaderFrom(response);
+
   if (response.status === 404) {
-    return { status: "not_found" };
+    return { result: { status: "not_found" }, cookies };
   }
 
   if (!response.ok) {
-    return { status: "fetch_error" };
+    return { result: { status: "fetch_error" }, cookies };
   }
 
   const html = await response.text();
-  return parseProfileHtml(html);
+  return { result: parseProfileHtml(html), cookies };
+}
+
+export function cookieHeaderFrom(response: Response): string | null {
+  const raw =
+    typeof response.headers.getSetCookie === "function"
+      ? response.headers.getSetCookie()
+      : [];
+
+  const parts = raw
+    .map((cookie) => cookie.split(";")[0]?.trim())
+    .filter((part): part is string => Boolean(part));
+
+  return parts.length > 0 ? parts.join("; ") : null;
 }

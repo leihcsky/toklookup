@@ -55,3 +55,16 @@ export const homeMetadata = pageMetadata({
   path: "/",
   absoluteTitle: true,
 });
+
+export const STORY_SEO = {
+  title: "TikTok Story Viewer | Watch Public Stories Anonymously",
+  description:
+    "Watch currently active public TikTok stories anonymously. Preview or download by username or profile URL, with no login. Private and expired stories stay unavailable.",
+} as const;
+
+export const storyMetadata = pageMetadata({
+  title: STORY_SEO.title,
+  description: STORY_SEO.description,
+  path: "/tiktok-story-viewer",
+  absoluteTitle: true,
+});

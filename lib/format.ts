@@ -32,6 +32,37 @@ export function formatDate(value: string | null): string {
   }).format(date);
 }
 
+export function formatDateTime(value: string | null): string {
+  if (!value) {
+    return "—";
+  }
+
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return "—";
+  }
+
+  return new Intl.DateTimeFormat("en", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  }).format(date);
+}
+
+export function formatDuration(seconds: number | null): string {
+  if (seconds === null || seconds <= 0) {
+    return "—";
+  }
+
+  const rounded = Math.round(seconds);
+  if (rounded < 60) {
+    return `${rounded}s`;
+  }
+
+  const minutes = Math.floor(rounded / 60);
+  const rest = rounded % 60;
+  return rest ? `${minutes}m ${rest}s` : `${minutes}m`;
+}
+
 export function formatLanguage(code: string | null): string {
   if (!code) {
     return "—";

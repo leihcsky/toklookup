@@ -7,8 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "tsx --test tests/parser.test.ts",
-    "poc": "tsx scripts/poc-lookup.ts"
+    "test": "tsx --test tests/parser.test.ts tests/stories-parser.test.ts",
+    "poc": "tsx scripts/poc-lookup.ts",
+    "poc:stories": "tsx scripts/poc-stories.ts"
   },
   "dependencies": {
     "next": "16.3.5",

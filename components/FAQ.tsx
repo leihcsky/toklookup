@@ -44,6 +44,11 @@ export const FAQS = [
     answer:
       "Fields such as a bio link or region only appear when TikTok includes them on the public profile. If a field is blank, it was not available in that public data.",
   },
+  {
+    question: "Can I watch public TikTok stories from here?",
+    answer:
+      "This page is the User Finder for public profile fields. To preview currently active public stories anonymously, open the TikTok Story Viewer from the header, the footer, or the link above the search box.",
+  },
 ];
 
 export function FAQ() {

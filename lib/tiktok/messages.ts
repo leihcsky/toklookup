@@ -12,4 +12,16 @@ export const USER_MESSAGES: Record<Exclude<LookupStatus, "success">, string> = {
   parse_error:
     "TikTok profile data is temporarily unavailable. Please try again later.",
   invalid_username: "Enter a TikTok username, @username, or profile URL.",
+  no_stories:
+    "This public account has no currently active stories. Stories expire after about 24 hours.",
 };
+
+export const STORY_MESSAGES = {
+  ...USER_MESSAGES,
+  unavailable:
+    "Public stories are temporarily unavailable. Please try again later.",
+  fetch_error:
+    "Public stories are temporarily unavailable. Please try again later.",
+  parse_error:
+    "Public stories are temporarily unavailable. Please try again later.",
+} as const;

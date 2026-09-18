@@ -20,9 +20,9 @@ export default function PrivacyPage() {
       <LegalSection title="Overview">
         <p>
           This policy explains what TokLookup collects when you use the TikTok
-          User Finder, how public TikTok data is handled, and how long anything
-          is kept. TokLookup does not require an account and does not sell
-          personal information.
+          User Finder or TikTok Story Viewer, how public TikTok data is handled,
+          and how long anything is kept. TokLookup does not require an account
+          and does not sell personal information.
         </p>
       </LegalSection>
 
@@ -45,21 +45,23 @@ export default function PrivacyPage() {
 
       <LegalSection title="TikTok data">
         <p>
-          TokLookup retrieves publicly available TikTok profile information. We
-          do not log into TikTok on your behalf, access private accounts, or
-          collect follower/following lists. Displayed fields may include
-          username, display name, avatar URL, bio, public stats, verification
-          status, profile URL, and user ID when those values are present on the
-          public page.
+          TokLookup retrieves publicly available TikTok profile information and,
+          when you use the Story Viewer, currently active public story media
+          URLs. We do not log into TikTok on your behalf, access private
+          accounts, or collect follower/following lists. Displayed fields may
+          include username, display name, avatar URL, bio, public stats,
+          verification status, profile URL, user ID, and public story files when
+          those values are present.
         </p>
       </LegalSection>
 
       <LegalSection title="Retention">
         <p>
           Query results are not stored as a permanent TikTok user database.
-          Successful and some unsuccessful lookups may be cached in server
-          memory for up to six hours so repeated searches are faster and put
-          less load on public pages. After that window, the cache entry expires.
+          Successful and some unsuccessful profile lookups may be cached in
+          server memory for up to six hours. Public story lookups are cached for
+          a much shorter window, about 10 minutes, because stories expire
+          quickly. After that window, the cache entry expires.
         </p>
         <p>
           Recent searches are saved in your browser&apos;s local storage. You
@@ -98,8 +100,9 @@ export default function PrivacyPage() {
           advertising networks or a separate Redis/database provider.
         </p>
         <p>
-          Avatar images, when shown, are loaded from the public URL returned by
-          TikTok. TokLookup does not download or re-host those files.
+          Avatar images and public story files, when shown or downloaded, are
+          requested from the public URLs returned by TikTok. TokLookup does not
+          keep a permanent library of those files.
         </p>
       </LegalSection>
 

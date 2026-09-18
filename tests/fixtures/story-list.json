@@ -1,0 +1,15 @@
+{
+  "statusCode": 0,
+  "TotalCount": "1",
+  "itemList": [
+    {
+      "id": "7572198435487501598",
+      "createTime": 1758193200,
+      "video": {
+        "duration": 8,
+        "originCover": "https://p16-sign.tiktokcdn.com/tos-maliva-p-0068/cover.jpeg",
+        "playAddr": "https://v16-webapp-prime.tiktok.com/video/tos/example.mp4"
+      }
+    }
+  ]
+}

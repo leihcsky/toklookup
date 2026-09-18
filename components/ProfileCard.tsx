@@ -1,5 +1,6 @@
 import { formatDate, formatLanguage, formatRegion } from "@/lib/format";
 import type { TikTokProfile } from "@/lib/tiktok/types";
+import Link from "next/link";
 import { CopyButton } from "./CopyButton";
 import { ProfileStats } from "./ProfileStats";
 
@@ -51,17 +52,38 @@ export function ProfileCard({ profile }: ProfileCardProps) {
         )}
 
         <div className="min-w-0 flex-1">
-          <div className="flex flex-wrap items-center gap-2">
-            <h2 className="text-xl font-semibold tracking-tight break-words text-zinc-900 sm:text-2xl">
-              {profile.displayName}
-            </h2>
-            {profile.verified ? (
-              <span className="rounded-full bg-sky-100 px-2 py-0.5 text-xs font-semibold text-sky-800">
-                Verified
-              </span>
-            ) : null}
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+            <div className="min-w-0">
+              <div className="flex flex-wrap items-center gap-2">
+                <h2 className="text-xl font-semibold tracking-tight break-words text-zinc-900 sm:text-2xl">
+                  {profile.displayName}
+                </h2>
+                {profile.verified ? (
+                  <span className="rounded-full bg-sky-100 px-2 py-0.5 text-xs font-semibold text-sky-800">
+                    Verified
+                  </span>
+                ) : null}
+              </div>
+              <p className="mt-1 text-zinc-500">@{profile.username}</p>
+            </div>
+            <div className="flex w-full shrink-0 flex-col gap-2 sm:w-auto">
+              <Link
+                href={`/tiktok-story-viewer?username=${encodeURIComponent(profile.username)}`}
+                className="inline-flex h-9 items-center justify-center whitespace-nowrap rounded-xl bg-teal-800 px-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-700"
+              >
+                View stories
+              </Link>
+              <a
+                href={profile.profileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-9 items-center justify-center gap-1.5 whitespace-nowrap rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 text-sm font-medium text-zinc-600 transition hover:border-zinc-300 hover:bg-white hover:text-zinc-900"
+              >
+                View on TikTok
+                <ExternalLinkIcon />
+              </a>
+            </div>
           </div>
-          <p className="mt-1 text-zinc-500">@{profile.username}</p>
           {profile.bio ? (
             <p className="mt-3 max-w-2xl whitespace-pre-wrap text-sm leading-6 text-zinc-700">
               {profile.bio}
@@ -111,15 +133,6 @@ export function ProfileCard({ profile }: ProfileCardProps) {
             ))}
           </dl>
         </section>
-
-        <a
-          href={profile.profileUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex text-sm font-medium text-teal-800 hover:underline"
-        >
-          View on TikTok
-        </a>
       </div>
     </article>
   );
@@ -127,4 +140,22 @@ export function ProfileCard({ profile }: ProfileCardProps) {
 
 function displayLink(url: string): string {
   return url.replace(/^https?:\/\//i, "");
+}
+
+function ExternalLinkIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 16 16"
+      className="h-3.5 w-3.5 shrink-0 opacity-70"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M6.5 3.5H3.5A1.5 1.5 0 0 0 2 5v7.5A1.5 1.5 0 0 0 3.5 14H11a1.5 1.5 0 0 0 1.5-1.5V9.5" />
+      <path d="M9.5 2.5h4v4M13.5 2.5 7 9" />
+    </svg>
+  );
 }
