@@ -10,6 +10,7 @@ export const SITE = {
   url: "https://toklookup.click",
   contactEmail:
     process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@toklookup.click",
+  gaId: process.env.NEXT_PUBLIC_GA_ID || "G-BH8QHKNRV0",
   legalUpdated: "September 18, 2026",
 } as const;
 

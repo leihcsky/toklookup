@@ -36,11 +36,11 @@ export default function PrivacyPage() {
             contact details you send us, such as an email address on a data
             removal or support request
           </li>
+          <li>
+            usage data collected by Google Analytics, including pages viewed,
+            referrer, device and browser information, and approximate location
+          </li>
         </ul>
-        <p>
-          We do not currently run third-party advertising or analytics pixels.
-          If that changes, this policy will be updated first.
-        </p>
       </LegalSection>
 
       <LegalSection title="TikTok data">
@@ -69,13 +69,33 @@ export default function PrivacyPage() {
         </p>
       </LegalSection>
 
+      <LegalSection title="Analytics">
+        <p>
+          TokLookup uses Google Analytics 4 (gtag.js) to understand traffic and
+          how the site is used. Google may set cookies or similar identifiers
+          and process IP address, device data, and page URLs. Lookup usernames
+          typed into the tool are not sent to Google Analytics as search events.
+          Google&apos;s privacy policy is at{" "}
+          <a
+            className="text-teal-800 underline"
+            href="https://policies.google.com/privacy"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            policies.google.com/privacy
+          </a>
+          . You can block analytics with a browser extension or by disabling
+          cookies. We do not use Google Analytics for advertising remarketing.
+        </p>
+      </LegalSection>
+
       <LegalSection title="Third parties">
         <p>
           The site is designed to run on a standard web host (for example
           Vercel or a similar Node.js host). That host may process IP addresses
-          and request logs as part of delivering the site. We do not currently
-          send lookup queries to advertising networks, analytics vendors, or a
-          separate Redis/database provider.
+          and request logs as part of delivering the site. Usage data is sent to
+          Google Analytics as described above. We do not send lookup queries to
+          advertising networks or a separate Redis/database provider.
         </p>
         <p>
           Avatar images, when shown, are loaded from the public URL returned by
