@@ -16,7 +16,11 @@ export function ProfileCard({ profile }: ProfileCardProps) {
       hint: "Stays the same if the username changes.",
     },
     { label: "Language", value: formatLanguage(profile.language) },
-    { label: "Region", value: formatRegion(profile.region) },
+    {
+      label: "Region",
+      value: formatRegion(profile.region),
+      hint: "Usually the account country, when TikTok includes it.",
+    },
     { label: "Account created", value: formatDate(profile.createdAt) },
     {
       label: "Username last changed",

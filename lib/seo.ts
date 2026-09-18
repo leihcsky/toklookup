@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const HOME_SEO = {
   title: "TikTok User Finder | See User ID & Region, No Login",
   description:
-    "Free TikTok User Finder and region finder. Look up public profiles by username or URL. See User ID, region, bio, and followers. No login required.",
+    "Free TikTok User Finder. Look up public profile info and region by username or URL. See User ID, country, bio, and followers. No login required.",
 } as const;
 
 type PageSeo = {

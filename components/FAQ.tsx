@@ -30,9 +30,14 @@ export const FAQS = [
       "No. Only information that is already public on the web profile is shown. Private accounts are not opened.",
   },
   {
+    question: "Can I see which country a TikTok account is from?",
+    answer:
+      "Often yes. If the public profile includes a region, TokLookup shows it, and that region is usually the account country. It is not GPS, live location, or an IP lookup, and private accounts stay closed.",
+  },
+  {
     question: "Can I use this as a TikTok region finder?",
     answer:
-      "Yes, when TikTok includes a region on the public profile. TokLookup shows that public region field; it is not GPS, live location, or an IP lookup, and private accounts stay closed.",
+      "Yes. TokLookup shows the public region when TikTok includes it. People often use that region to tell which country the account is associated with. If the field is missing, it stays blank.",
   },
   {
     question: "Why is some information missing?",

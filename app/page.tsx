@@ -11,7 +11,7 @@ const HIGHLIGHTS = [
   "Free to use",
   "Public profiles only",
   "Includes User ID",
-  "Shows region",
+  "Region detection",
 ];
 
 const PROFILE_FIELDS = [
@@ -25,7 +25,10 @@ const PROFILE_FIELDS = [
   { label: "User ID", detail: "The numeric account ID. It stays the same if the username changes." },
   { label: "Bio link", detail: "The public link on the profile, when present" },
   { label: "Language", detail: "The language set on the public profile" },
-  { label: "Region", detail: "The public profile region TikTok lists, when present" },
+  {
+    label: "Region",
+    detail: "The public profile region — often the account country — when present",
+  },
   { label: "Account created", detail: "The public account creation date" },
 ];
 
@@ -92,8 +95,9 @@ export default function Home() {
         <p className="max-w-2xl text-base leading-7 text-zinc-600 sm:text-lg sm:leading-8">
           Look up public TikTok profile information by username. No login, no
           app — paste a handle or profile URL and see what is already public,
-          including User ID and region. It also works as a TikTok region finder
-          when the public profile lists a region.
+          including User ID and region. When a region is listed, it is usually
+          the account country. It also works as a TikTok region finder for that
+          public field.
         </p>
         <ul className="flex flex-wrap gap-2">
           {HIGHLIGHTS.map((item) => (
@@ -115,7 +119,8 @@ export default function Home() {
         <p className="max-w-2xl text-zinc-600 leading-7">
           When the profile is public, TokLookup tries to return the same kind of
           fields you would see on the public web profile — including User ID,
-          language, and the profile region.
+          language, and region. The public region is typically the account
+          country.
         </p>
         <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
           {PROFILE_FIELDS.map((field) => (
@@ -167,10 +172,9 @@ export default function Home() {
           </h2>
           <p className="text-sm leading-7 text-zinc-600">
             Check a public handle, confirm a display name or verification badge,
-            read the User ID, or use it as a TikTok region finder when the
-            public profile lists a region — without opening the TikTok app. If
-            the account is private or missing, the tool says so instead of
-            guessing.
+            or read the User ID without opening the TikTok app. If the profile
+            lists a region, you can also see the account country. If the account
+            is private or missing, the tool says so instead of guessing.
           </p>
         </div>
       </section>
