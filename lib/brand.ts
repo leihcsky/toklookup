@@ -11,7 +11,7 @@ export const SITE = {
   contactEmail:
     process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@toklookup.click",
   gaId: process.env.NEXT_PUBLIC_GA_ID || "G-BH8QHKNRV0",
-  legalUpdated: "September 18, 2026",
+  legalUpdated: "October 3, 2026",
 } as const;
 
 export function siteUrl(path = "/"): string {

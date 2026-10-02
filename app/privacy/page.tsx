@@ -112,6 +112,32 @@ export default function PrivacyPage() {
         </p>
       </LegalSection>
 
+      <LegalSection title="Browser extension">
+        <p>
+          TokLookup offers a browser extension, TikTok Story, Repost &amp;
+          Profile Viewer, that opens the TokLookup tools from your browser. The
+          extension itself does not collect, store, or transmit personal data.
+          It has no analytics, sets no cookies, and does not read your browsing
+          history.
+        </p>
+        <ul className="list-disc space-y-1 pl-5">
+          <li>
+            Access to tiktok.com pages is used only to read the current page
+            address, detect the username on a TikTok profile page, and show the
+            Profile, Stories, and Reposts buttons there.
+          </li>
+          <li>
+            The right-click menu reads the link or selected text only when you
+            choose a TokLookup menu item.
+          </li>
+          <li>
+            Data leaves your browser only when you choose a lookup. The
+            extension then opens TokLookup in a new tab with that username in
+            the address, and the rest of this policy applies.
+          </li>
+        </ul>
+      </LegalSection>
+
       <LegalSection title="Your choices">
         <p>
           You can stop using the service at any time. If you believe information
