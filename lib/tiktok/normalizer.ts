@@ -69,6 +69,7 @@ export function normalizeProfile(
     videoCount: toNumber(stats?.videoCount),
     verified: toBoolean(user.verified),
     userId: user.id === undefined || user.id === null ? null : String(user.id),
+    secUid: user.secUid?.trim() || null,
     language: user.language?.trim() || null,
     region: user.region?.trim() || null,
     createdAt: unixToIso(user.createTime),

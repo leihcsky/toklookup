@@ -8,8 +8,8 @@ export function SiteFooter() {
           <p className="leading-6">
             TokLookup is an independent third-party service and is not affiliated
             with, endorsed by, or sponsored by TikTok or ByteDance. It only
-            attempts to retrieve publicly available profile information and
-            currently active public stories.
+            attempts to retrieve publicly available profile information,
+            currently active public stories, and public reposts.
           </p>
           <p className="text-zinc-500">© {new Date().getFullYear()} TokLookup</p>
         </div>
@@ -19,6 +19,9 @@ export function SiteFooter() {
           </Link>
           <Link href="/tiktok-story-viewer" className="py-1 hover:text-zinc-900">
             Story Viewer
+          </Link>
+          <Link href="/tiktok-repost-viewer" className="py-1 hover:text-zinc-900">
+            Repost Viewer
           </Link>
           <Link href="/terms" className="py-1 hover:text-zinc-900">
             Terms

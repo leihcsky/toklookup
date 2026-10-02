@@ -20,7 +20,8 @@ export default function PrivacyPage() {
       <LegalSection title="Overview">
         <p>
           This policy explains what TokLookup collects when you use the TikTok
-          User Finder or TikTok Story Viewer, how public TikTok data is handled,
+          User Finder, TikTok Story Viewer, or TikTok Repost Viewer, how public
+          TikTok data is handled,
           and how long anything is kept. TokLookup does not require an account
           and does not sell personal information.
         </p>
@@ -47,7 +48,12 @@ export default function PrivacyPage() {
         <p>
           TokLookup retrieves publicly available TikTok profile information and,
           when you use the Story Viewer, currently active public story media
-          URLs. We do not log into TikTok on your behalf, access private
+          URLs. When you use the Repost Viewer, it retrieves public repost
+          listings such as cover images, captions, play counts, and the
+          original creator&apos;s username, and streams public repost videos
+          through our server so they can play on this site. We do not log
+          into TikTok on your
+          behalf, access private
           accounts, or collect follower/following lists. Displayed fields may
           include username, display name, avatar URL, bio, public stats,
           verification status, profile URL, user ID, and public story files when

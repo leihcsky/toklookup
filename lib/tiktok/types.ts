@@ -10,6 +10,7 @@ export interface TikTokProfile {
   videoCount: number | null;
   verified: boolean | null;
   userId: string | null;
+  secUid: string | null;
   language: string | null;
   region: string | null;
   createdAt: string | null;
@@ -28,7 +29,8 @@ export type LookupStatus =
   | "fetch_error"
   | "parse_error"
   | "invalid_username"
-  | "no_stories";
+  | "no_stories"
+  | "no_reposts";
 
 export type StoryKind = "video" | "photo";
 
@@ -59,9 +61,57 @@ export type StoriesLookupResult =
       stories?: TikTokStory[];
     };
 
+export interface TikTokRepostAuthor {
+  username: string;
+  displayName: string;
+  avatarUrl: string | null;
+}
+
+export interface TikTokRepost {
+  id: string;
+  type: StoryKind;
+  description: string | null;
+  coverUrl: string | null;
+  durationSeconds: number | null;
+  createdAt: string | null;
+  playCount: number | null;
+  likeCount: number | null;
+  author: TikTokRepostAuthor | null;
+  videoUrl: string;
+  images: string[];
+  playable: boolean;
+}
+
+export interface RepostRecord extends TikTokRepost {
+  playUrl: string | null;
+}
+
+export interface RepostPage {
+  reposts: TikTokRepost[];
+  hasMore: boolean;
+  cursor: string | null;
+}
+
+export interface RepostRecordPage {
+  reposts: RepostRecord[];
+  hasMore: boolean;
+  cursor: string | null;
+}
+
+export type RepostsLookupResult =
+  | ({ status: "success"; profile: TikTokProfile } & RepostPage)
+  | { status: "no_reposts"; profile: TikTokProfile; reposts: []; hasMore: false; cursor: null }
+  | {
+      status: Exclude<LookupStatus, "success" | "no_reposts">;
+      profile?: TikTokProfile;
+    };
+
 export type LookupResult =
   | { status: "success"; profile: TikTokProfile }
-  | { status: Exclude<LookupStatus, "success" | "no_stories">; profile?: TikTokProfile };
+  | {
+      status: Exclude<LookupStatus, "success" | "no_stories" | "no_reposts">;
+      profile?: TikTokProfile;
+    };
 
 export interface TikTokDataProvider {
   getProfile(username: string): Promise<LookupResult>;
@@ -79,6 +129,7 @@ export interface RawUserDetail {
 
 export interface RawTikTokUser {
   id?: string | number;
+  secUid?: string;
   uniqueId?: string;
   nickname?: string;
   avatarLarger?: string;

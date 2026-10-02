@@ -2,8 +2,7 @@
 
 import { formatDateTime, formatDuration } from "@/lib/format";
 import { storyMediaPath } from "@/lib/tiktok/story-media-url";
-import type { TikTokProfile, TikTokStory } from "@/lib/tiktok/types";
-import Link from "next/link";
+import type { TikTokStory } from "@/lib/tiktok/types";
 import { useEffect, useRef, useState } from "react";
 
 type StoryGridProps = {
@@ -220,48 +219,6 @@ function StoryPlayer({
             ? `Expires ${formatDateTime(story.expiresAt)}`
             : "Active public story"}
         </p>
-      </div>
-    </div>
-  );
-}
-
-type StoryProfileStripProps = {
-  profile: TikTokProfile;
-};
-
-export function StoryProfileStrip({ profile }: StoryProfileStripProps) {
-  return (
-    <div className="flex min-w-0 items-center gap-3 rounded-3xl border border-zinc-200 bg-white p-4">
-      {profile.avatarUrl ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={profile.avatarUrl}
-          alt=""
-          width={48}
-          height={48}
-          className="h-12 w-12 rounded-full object-cover"
-        />
-      ) : (
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-zinc-100 font-semibold text-zinc-500">
-          {profile.displayName.slice(0, 1).toUpperCase()}
-        </div>
-      )}
-      <div className="min-w-0">
-        <p className="truncate font-semibold text-zinc-900">{profile.displayName}</p>
-        <p className="truncate text-sm text-zinc-500">@{profile.username}</p>
-      </div>
-      <div className="ml-auto flex shrink-0 flex-col items-end gap-1">
-        <Link
-          href={`/?username=${encodeURIComponent(profile.username)}`}
-          className="text-sm font-semibold text-teal-800 hover:underline"
-        >
-          View profile
-        </Link>
-        {profile.userId ? (
-          <p className="hidden font-mono text-xs text-zinc-500 sm:block">
-            ID {profile.userId}
-          </p>
-        ) : null}
       </div>
     </div>
   );

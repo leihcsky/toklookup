@@ -49,6 +49,25 @@ export async function fetchPublicProfilePage(username: string): Promise<{
   return { result: parseProfileHtml(html), cookies };
 }
 
+export function mergeCookies(current: string | null, extra: string | null): string | null {
+  if (!current) {
+    return extra;
+  }
+  if (!extra) {
+    return current;
+  }
+
+  const map = new Map<string, string>();
+  for (const part of `${current}; ${extra}`.split(";")) {
+    const [name, ...rest] = part.trim().split("=");
+    if (name) {
+      map.set(name, rest.join("="));
+    }
+  }
+
+  return [...map.entries()].map(([name, value]) => `${name}=${value}`).join("; ");
+}
+
 export function cookieHeaderFrom(response: Response): string | null {
   const raw =
     typeof response.headers.getSetCookie === "function"

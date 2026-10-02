@@ -15,6 +15,9 @@ export function SiteHeader() {
           <Link href="/tiktok-story-viewer" className="py-1 hover:text-zinc-900">
             Story Viewer
           </Link>
+          <Link href="/tiktok-repost-viewer" className="py-1 hover:text-zinc-900">
+            Repost Viewer
+          </Link>
         </nav>
       </div>
     </header>

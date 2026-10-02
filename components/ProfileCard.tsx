@@ -73,6 +73,12 @@ export function ProfileCard({ profile }: ProfileCardProps) {
               >
                 View stories
               </Link>
+              <Link
+                href={`/tiktok-repost-viewer?username=${encodeURIComponent(profile.username)}`}
+                className="inline-flex h-9 items-center justify-center whitespace-nowrap rounded-xl border border-teal-800/25 bg-teal-50 px-3.5 text-sm font-semibold text-teal-900 transition hover:border-teal-800/40 hover:bg-teal-100"
+              >
+                View reposts
+              </Link>
               <a
                 href={profile.profileUrl}
                 target="_blank"

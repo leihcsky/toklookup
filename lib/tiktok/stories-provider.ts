@@ -1,4 +1,9 @@
-import { PROFILE_HEADERS, cookieHeaderFrom, fetchPublicProfilePage } from "./public-page-provider";
+import {
+  PROFILE_HEADERS,
+  cookieHeaderFrom,
+  fetchPublicProfilePage,
+  mergeCookies,
+} from "./public-page-provider";
 import { parseStoryList } from "./stories-parser";
 import type { StoriesLookupResult } from "./types";
 
@@ -71,25 +76,6 @@ export async function lookupPublicStories(
     result: { status: "success", profile: result.profile, stories },
     cookies,
   };
-}
-
-function mergeCookies(current: string | null, extra: string | null): string | null {
-  if (!current) {
-    return extra;
-  }
-  if (!extra) {
-    return current;
-  }
-
-  const map = new Map<string, string>();
-  for (const part of `${current}; ${extra}`.split(";")) {
-    const [name, ...rest] = part.trim().split("=");
-    if (name) {
-      map.set(name, rest.join("="));
-    }
-  }
-
-  return [...map.entries()].map(([name, value]) => `${name}=${value}`).join("; ");
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

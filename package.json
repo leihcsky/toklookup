@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "test": "tsx --test tests/parser.test.ts tests/stories-parser.test.ts",
+    "test": "tsx --test tests/parser.test.ts tests/stories-parser.test.ts tests/reposts-parser.test.ts",
     "poc": "tsx scripts/poc-lookup.ts",
     "poc:stories": "tsx scripts/poc-stories.ts"
   },

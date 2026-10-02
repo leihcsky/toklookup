@@ -14,6 +14,8 @@ export const USER_MESSAGES: Record<Exclude<LookupStatus, "success">, string> = {
   invalid_username: "Enter a TikTok username, @username, or profile URL.",
   no_stories:
     "This public account has no currently active stories. Stories expire after about 24 hours.",
+  no_reposts:
+    "No public reposts were found for this account. The creator may not have reposted anything, or may have hidden their Reposts tab.",
 };
 
 export const STORY_MESSAGES = {
@@ -24,4 +26,16 @@ export const STORY_MESSAGES = {
     "Public stories are temporarily unavailable. Please try again later.",
   parse_error:
     "Public stories are temporarily unavailable. Please try again later.",
+} as const;
+
+export const REPOST_MESSAGES = {
+  ...USER_MESSAGES,
+  private:
+    "This account is private, so its reposts are not public.",
+  unavailable:
+    "Public reposts are temporarily unavailable. Please try again later.",
+  fetch_error:
+    "Public reposts are temporarily unavailable. Please try again later.",
+  parse_error:
+    "Public reposts are temporarily unavailable. Please try again later.",
 } as const;

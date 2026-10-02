@@ -62,6 +62,19 @@ export const STORY_SEO = {
     "Watch currently active public TikTok stories anonymously. Preview or download by username or profile URL, with no login. Private and expired stories stay unavailable.",
 } as const;
 
+export const REPOST_SEO = {
+  title: "TikTok Repost Viewer | See Public Reposts, No Login",
+  description:
+    "Free TikTok Repost Viewer: see what any public account has reposted. Enter a username to browse and watch public TikTok reposts anonymously, no login needed.",
+} as const;
+
+export const repostMetadata = pageMetadata({
+  title: REPOST_SEO.title,
+  description: REPOST_SEO.description,
+  path: "/tiktok-repost-viewer",
+  absoluteTitle: true,
+});
+
 export const storyMetadata = pageMetadata({
   title: STORY_SEO.title,
   description: STORY_SEO.description,

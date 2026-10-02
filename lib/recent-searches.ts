@@ -1,5 +1,6 @@
 const STORAGE_KEY = "toklookup.recentSearches";
 export const STORY_SEARCHES_KEY = "toklookup.recentStorySearches";
+export const REPOST_SEARCHES_KEY = "toklookup.recentRepostSearches";
 const MAX_RECENT = 8;
 
 export function readRecentSearches(

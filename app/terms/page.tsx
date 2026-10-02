@@ -21,8 +21,9 @@ export default function TermsPage() {
         <p>
           TokLookup is an independent third-party lookup tool. You may enter a
           TikTok username, @handle, or public profile URL to request publicly
-          available profile information through the TikTok User Finder, or
-          currently active public stories through the TikTok Story Viewer.
+          available profile information through the TikTok User Finder,
+          currently active public stories through the TikTok Story Viewer, or
+          public reposts through the TikTok Repost Viewer.
         </p>
         <p>
           TokLookup is not a TikTok client, does not require a TikTok login, and
@@ -36,8 +37,9 @@ export default function TermsPage() {
       <LegalSection title="Public information">
         <p>
           The service only attempts to retrieve information that is already
-          publicly accessible on TikTok, including public profile pages and
-          currently active public stories. If a profile is private, missing,
+          publicly accessible on TikTok, including public profile pages,
+          currently active public stories, and reposts shown on a public
+          Reposts tab. If a profile is private, missing,
           restricted, or otherwise unavailable, or if no public story is live,
           TokLookup may return no data or an incomplete result.
         </p>

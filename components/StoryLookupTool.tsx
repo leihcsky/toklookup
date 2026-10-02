@@ -1,8 +1,9 @@
 "use client";
 
 import { ErrorMessage } from "@/components/ErrorMessage";
+import { ProfileStrip } from "@/components/ProfileStrip";
 import { SearchBox } from "@/components/SearchBox";
-import { StoryGrid, StoryProfileStrip } from "@/components/StoryGrid";
+import { StoryGrid } from "@/components/StoryGrid";
 import {
   STORY_SEARCHES_KEY,
   clearRecentSearches,
@@ -126,7 +127,7 @@ function StoryLookupToolInner() {
         }
       />
       {error ? <ErrorMessage message={error} /> : null}
-      {profile ? <StoryProfileStrip profile={profile} /> : null}
+      {profile ? <ProfileStrip profile={profile} /> : null}
       {stories.length > 0 && profile ? (
         <StoryGrid username={profile.username} stories={stories} />
       ) : null}
