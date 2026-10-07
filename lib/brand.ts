@@ -11,6 +11,9 @@ export const SITE = {
   contactEmail:
     process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hello@toklookup.click",
   gaId: process.env.NEXT_PUBLIC_GA_ID || "G-BH8QHKNRV0",
+  plausibleScript:
+    process.env.NEXT_PUBLIC_PLAUSIBLE_SCRIPT ||
+    "https://plausible.io/js/pa-JoFObJyKSSaKS34KZFLD_.js",
   legalUpdated: "October 3, 2026",
 } as const;
 

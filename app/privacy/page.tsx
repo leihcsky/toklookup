@@ -38,8 +38,9 @@ export default function PrivacyPage() {
             removal or support request
           </li>
           <li>
-            usage data collected by Google Analytics, including pages viewed,
-            referrer, device and browser information, and approximate location
+            usage data collected by Google Analytics and Plausible Analytics,
+            including pages viewed, referrer, device and browser information,
+            and approximate location
           </li>
         </ul>
       </LegalSection>
@@ -95,6 +96,21 @@ export default function PrivacyPage() {
           . You can block analytics with a browser extension or by disabling
           cookies. We do not use Google Analytics for advertising remarketing.
         </p>
+        <p>
+          TokLookup also uses Plausible Analytics, a privacy-friendly service
+          that counts page views and referrers without cookies and without
+          building a profile of individual visitors. Plausible&apos;s data policy
+          is at{" "}
+          <a
+            className="text-teal-800 underline"
+            href="https://plausible.io/data-policy"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            plausible.io/data-policy
+          </a>
+          .
+        </p>
       </LegalSection>
 
       <LegalSection title="Third parties">
@@ -102,7 +118,7 @@ export default function PrivacyPage() {
           The site is designed to run on a standard web host (for example
           Vercel or a similar Node.js host). That host may process IP addresses
           and request logs as part of delivering the site. Usage data is sent to
-          Google Analytics as described above. We do not send lookup queries to
+          Google Analytics and Plausible Analytics as described above. We do not send lookup queries to
           advertising networks or a separate Redis/database provider.
         </p>
         <p>

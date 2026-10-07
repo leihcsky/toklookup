@@ -1,4 +1,5 @@
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { PlausibleAnalytics } from "@/components/PlausibleAnalytics";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SITE } from "@/lib/brand";
@@ -51,6 +52,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {children}
         <SiteFooter />
         <GoogleAnalytics />
+        <PlausibleAnalytics />
       </body>
     </html>
   );
